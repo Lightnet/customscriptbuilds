@@ -1,13 +1,22 @@
 {
-  "name": "customscriptbuilds",
+  "name": "Custom Script Builds",
   "main": "./lib/customscriptbuilds",
   "version": "0.0.0",
-  "description": "A short description of your package",
-  "activationCommands": {
-    "atom-workspace": "customscriptbuilds:toggle",
-    "atom-workspace": "customscriptbuilds:compile",
-    "atom-workspace": "customscriptbuilds:run"
-  },
+  "description": "Script builder to compile files.",
+  "activationCommands": [
+    {"atom-workspace": "customscriptbuilds:toggle"},
+    {"atom-workspace": "customscriptbuilds:addmessage"},
+    {"atom-workspace": "customscriptbuilds:build"},
+    {"atom-workspace": "customscriptbuilds:rebuild"},
+    {"atom-workspace": "customscriptbuilds:debug"},
+    {"atom-workspace": "customscriptbuilds:compile"},
+    {"atom-workspace": "customscriptbuilds:run"},
+    {"atom-workspace": "customscriptbuilds:stop"},
+    {"atom-workspace": "customscriptbuilds:config"},
+    {"atom-workspace": "customscriptbuilds:export"},
+    {"atom-workspace": "customscriptbuilds:newtab"},
+    {"atom-workspace": "customscriptbuilds:newwindow"}
+  ],
   "repository": "https://github.com/atom/customscriptbuilds",
   "license": "MIT",
   "engines": {
