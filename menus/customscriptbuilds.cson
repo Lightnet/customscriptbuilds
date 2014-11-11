@@ -1,0 +1,43 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+
+'context-menu':
+  'atom-text-editor': [
+    {
+      'label': 'Toggle customscriptbuilds'
+      'command': 'customscriptbuilds:toggle'
+    }
+  ]
+'menu': [
+  {
+      'label': 'Custom Script Builds'
+      'submenu': [
+        {'label': 'Toggle', 'command': 'customscriptbuilds:toggle'},
+        {'label': 'Compile', 'command': 'customscriptbuilds:compile'},
+        {'label': 'Run', 'command': 'customscriptbuilds:run'}
+      ]
+  }
+]
+
+###
+'context-menu':
+  'atom-text-editor': [
+    {
+      'label': 'Toggle customscriptbuilds'
+      'command': 'customscriptbuilds:toggle'
+    }
+  ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'Custom Script Builds'
+      'submenu': [
+        {
+          'label': 'Toggle'
+          'command': 'customscriptbuilds:toggle'
+        }
+      ]
+    ]
+  }
+]
+###
