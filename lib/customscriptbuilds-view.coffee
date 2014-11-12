@@ -27,6 +27,12 @@ class CustomscriptbuildsView
     atom.commands.add 'atom-workspace', 'customscriptbuilds:export': => @script_export()
     atom.commands.add 'atom-workspace', 'customscriptbuilds:newtab': => @script_newtab()
     atom.commands.add 'atom-workspace', 'customscriptbuilds:newwindow': => @script_newwindow()
+    atom.commands.add 'atom-workspace', 'customscriptbuilds:about': => @window_about()
+
+    atom.commands.add 'atom-workspace', 'customscriptbuilds:set0': => @script_set0()
+    atom.commands.add 'atom-workspace', 'customscriptbuilds:set1': => @script_set1()
+    atom.commands.add 'atom-workspace', 'customscriptbuilds:log': => @script_log()
+    atom.commands.add 'atom-workspace', 'customscriptbuilds:currentview': => @script_currentview()
 
   # Returns an object that can be retrieved when package is activated
   serialize: ->
@@ -55,10 +61,34 @@ class CustomscriptbuildsView
       message.classList.add('message')
       #Add Text Message
       @element.appendChild(message)
+  script_newtab: ->
+    console.log 'script_newtab'
 
+    BrowserWindow = require('remote').require 'browser-window'
+    mainWindow = new BrowserWindow({width: 800, height: 600, frame: true });
+    #mainWindow.loadUrl('http://localhost:57772/csp/sys/webterminal/index.csp')
+
+    mainWindow.show()
+
+  script_newwindow: ->
+    console.log 'script_newwindow'
+
+    BrowserWindow = require('remote').require 'browser-window'
+    mainWindow = new BrowserWindow({width: 800, height: 600, frame: true });
+    #mainWindow.loadUrl('http://localhost:57772/csp/sys/webterminal/index.csp')
+    mainWindow.show()
 
   script_build: ->
     console.log 'script_build'
+    # this is a plain jQuery object; you can't call view-specific methods
+    editorElement = atom.workspaceView.find("atom-text-editor.active")
+    console.log editorElement
+
+
+    # get the view object by calling `.view()` to call view-specific methods
+    editorView = editorElement.view()
+    #editorView.setCursorBufferPosition([1, 2])
+    console.log editorView
 
   script_rebuild: ->
     console.log 'script_rebuild'
@@ -81,8 +111,36 @@ class CustomscriptbuildsView
   script_export: ->
     console.log 'script_export'
 
-  script_newtab: ->
-    console.log 'script_newtab'
+  script_set0: ->
+    console.log 'script_set0'
+    atom.config.set("customscriptbuild.showInvisibles", true)
 
-  script_newwindow: ->
-    console.log 'script_newwindow'
+  script_set1: ->
+    console.log 'script_set1'
+    atom.config.set("customscriptbuild.showInvisibles", false)
+
+  script_log: ->
+    console.log 'script_log'
+    console.log atom.config.get "customscriptbuild.showInvisibles"
+
+  window_about: ->
+    BrowserWindow = require('remote').require 'browser-window'
+    mainWindow = new BrowserWindow({width: 800, height: 600, frame: true });
+    mainWindow.loadUrl('https://github.com/Lightnet/customscriptbuilds')
+    mainWindow.show()
+
+  script_currentview: ->
+    console.log 'script_currentview'
+
+    #editorElement = atom.workspaceView.find("atom-text-editor.active")
+    #console.log editorElement
+
+
+    # get the view object by calling `.view()` to call view-specific methods
+    #editorView = editorElement.view()
+    #editorView.setCursorBufferPosition([1, 2])
+    #console.log editorView
+
+    console.log atom.workspaceView
+
+    #console.log atom.workspaceView

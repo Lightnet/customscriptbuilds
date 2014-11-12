@@ -19,10 +19,17 @@
         {'label': 'debug', 'command': 'customscriptbuilds:debug'},
         {'label': 'run', 'command': 'customscriptbuilds:run'},
         {'label': 'stop', 'command': 'customscriptbuilds:stop'},
-        {'label': 'config', 'command': 'customscriptbuilds:config'},
+        {'label': 'config', 'command': 'customscriptbuilds:run-configs'},
         {'label': 'export', 'command': 'customscriptbuilds:export'},
         {'label': 'newtab', 'command': 'customscriptbuilds:newtab'},
-        {'label': 'newwindow', 'command': 'customscriptbuilds:newwindow'}
+        {'label': 'newwindow', 'command': 'customscriptbuilds:newwindow'},
+        {'label': 'about', 'command': 'customscriptbuilds:about'},
+
+        {'label': 'set0', 'command': 'customscriptbuilds:set0'},
+        {'label': 'set1', 'command': 'customscriptbuilds:set1'},
+        {'label': 'log', 'command': 'customscriptbuilds:log'},
+        {'label': 'Currentview', 'command': 'customscriptbuilds:currentview'}
+
       ]
   }
 ]
