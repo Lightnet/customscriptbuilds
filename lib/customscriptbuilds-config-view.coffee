@@ -22,14 +22,13 @@ class CustomScriptBuildsConfigView extends View
             @select class: 'form-control', =>
               for option in predefinenames
                 @option value: option, option
-                console.log option
+                #console.log option
 
             @label 'Ext Type:'
             @select class: 'form-control', =>
               for option in options
                 @option value: option, option
-                console.log option
-
+                #console.log option
             @button class: "btn #{css}", click: 'close', 'Refresh'
             @button class: "btn #{css}", click: 'close', 'Save'
             @button class: "btn #{css}", click: 'close', 'Delete'

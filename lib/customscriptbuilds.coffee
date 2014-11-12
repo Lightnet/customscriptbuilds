@@ -39,10 +39,10 @@ module.exports =
 
   deactivate: ->
     @customscriptbuildsView.destroy()
-    @customscriptbuildsconfigView.destroy()
-    @customscriptbuildsconsoleView.destroy()
+    #@customscriptbuildsconfigView.destroy()
+    #@customscriptbuildsconsoleView.destroy()
 
   serialize: ->
     customscriptbuildsViewState: @customscriptbuildsView.serialize()
-    customscriptbuildsconfigViewState: @customscriptbuildsconfigView.serialize()
-    customscriptbuildsconsoleViewState: @customscriptbuildsconsoleView.serialize()
+    #customscriptbuildsconfigViewState: @customscriptbuildsconfigView.serialize()
+    #customscriptbuildsconsoleViewState: @customscriptbuildsconsoleView.serialize()

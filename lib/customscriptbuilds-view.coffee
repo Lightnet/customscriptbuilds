@@ -50,11 +50,9 @@ class CustomscriptbuildsView
       atom.confirm
         message: "[dialog]You sure?"
         buttons:
-          OK:(func) ->
-              fun:->
-                @dialog_process("intbtn")
-          Cancel:(func) ->
-              @dialog_process("intbtn")
+          OK:(func) ->  @dialog_process("intbtn")
+          Cancel:(func) ->  @dialog_process("intbtn")
+
 
         #console.log "tesy"
       #if answer == 1

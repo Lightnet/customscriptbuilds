@@ -4,7 +4,8 @@ module.exports =
 class CustomScriptBuildsConsoleView extends View
 
   @content: ->
-    @div class: 'panel-heading padded heading header-view', =>
+    #@div class: 'overlay from-top panel', outlet: 'scriptOptionsView', => #non header
+    @div class: 'panel-heading padded heading header-view', => #header
       @span class: 'heading-title', outlet: 'title'
       @span class: 'heading-status', outlet: 'status'
       @span
@@ -13,7 +14,9 @@ class CustomScriptBuildsConsoleView extends View
         click: 'close'
 
   initialize: (@runOptions) ->
-    console.log "init console"
+    @title.text  'console'
+    @setStatus  'start'
+    #console.log "init console"
     #atom.workspaceView.command 'customscriptbuilds:open-console', => @toggleScriptOptions()
     #atom.workspaceView.command 'customscriptbuilds:close-console', =>
       #@toggleScriptOptions 'hide'
@@ -34,7 +37,7 @@ class CustomScriptBuildsConsoleView extends View
       when 'show' then this.show() #@CustomScriptBuildsConfigView.show()
       when 'hide' then this.hide() #@CustomScriptBuildsConfigView.hide()
       else this.toggle() #@CustomScriptBuildsConfigView.toggle()
-    console.log "toggle console"
+    #console.log "toggle console"
 
   close: ->
     atom.workspaceView.trigger 'customscriptbuilds:close-console'
