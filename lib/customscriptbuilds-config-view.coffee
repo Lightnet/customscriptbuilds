@@ -9,6 +9,20 @@ class CustomScriptBuildsConfigView extends View
         @div class: 'panel-heading', 'Configure Run Options'
         @div class: 'panel-body padded', =>
           @div class: 'block', =>
+            @select
+            @label 'Setting Name:'
+            @input
+              type: 'text'
+              class: 'editor mini native-key-bindings'
+              outlet: 'inputSettingName'
+            css = 'btn inline-block-tight'
+            @button class: "btn #{css}", click: 'close', 'Refresh'
+            @button class: "btn #{css}", click: 'close', 'Save'
+            @button class: "btn #{css}", click: 'close', 'Delete'
+            @button class: "btn #{css}", click: 'setvar', 'Set'
+          @div class: 'block', =>
+        @div class: 'panel-body padded', =>
+          @div class: 'block', =>
             @label 'Current Working Directory:'
             @input
               type: 'text'
@@ -52,6 +66,7 @@ class CustomScriptBuildsConfigView extends View
     atom.workspaceView.command 'customscriptbuilds:save-options', => @saveOptions()
     atom.workspaceView.prependToTop this
     @toggleScriptOptions 'hide'
+    console.log this
 
   toggleScriptOptions: (command) ->
     #console.log command
@@ -64,6 +79,18 @@ class CustomScriptBuildsConfigView extends View
 
   saveOptions: ->
     console.log "save options"
+    splitArgs = (element) ->
+      item for item in element.val().split ' ' when item isnt ''
+
+    #console.log element
+
+    console.log @inputSettingName.val()
+    console.log @inputCwd.val()
+    console.log @inputCommand.val()
+    console.log @inputCommandArgs.val()
+    console.log @inputScriptArgs.val()
+    console.log @inputEnv.val()
+
 
   close: ->
     atom.workspaceView.trigger 'customscriptbuilds:close-config'
@@ -72,3 +99,7 @@ class CustomScriptBuildsConfigView extends View
     atom.workspaceView.trigger 'customscriptbuilds:save-options'
     atom.workspaceView.trigger 'customscriptbuilds:close-config'
     atom.workspaceView.trigger 'customscriptbuilds:run'
+
+  setvar: ->
+    #@inputEnv.val("test") #work
+    @inputEnv.val "test" #work

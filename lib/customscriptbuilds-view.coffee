@@ -1,6 +1,7 @@
 module.exports =
 class CustomscriptbuildsView
   constructor: (serializeState) ->
+
     # Create root element
     @element = document.createElement('div')
     @element.classList.add('customscriptbuilds',  'overlay', 'from-top')
@@ -12,6 +13,12 @@ class CustomscriptbuildsView
 
     message.classList.add('message')
     @element.appendChild(message)
+
+    message = document.createElement('button')
+    message.textContent = "The button!"
+    message.classList.add('message')
+    @element.appendChild(message)
+
 
 
     # Register command that toggles this view
@@ -131,16 +138,25 @@ class CustomscriptbuildsView
 
   script_currentview: ->
     console.log 'script_currentview'
-
     #editorElement = atom.workspaceView.find("atom-text-editor.active")
     #console.log editorElement
-
-
     # get the view object by calling `.view()` to call view-specific methods
     #editorView = editorElement.view()
     #editorView.setCursorBufferPosition([1, 2])
     #console.log editorView
+    #console.log atom.workspaceView
 
-    console.log atom.workspaceView
+    editor = atom.workspace.getActiveTextEditor()
+
+    console.log editor.getTitle() #get current title tab
+    console.log editor
+    console.log editor.getUri() #get file path
+
+    BrowserWindow = require('remote').require 'browser-window'
+    mainWindow = new BrowserWindow({width: 800, height: 600, frame: true });
+    #mainWindow.loadUrl editor.getUri()
+    #mainWindow.loadUrl('http://localhost:57772/csp/sys/webterminal/index.csp')
+    mainWindow.show()
+
 
     #console.log atom.workspaceView
