@@ -90,29 +90,22 @@ class CustomscriptbuildsView
   script_addmessage: ->
     console.log 'script_compile'
     if @element.parentElement?
-
       # Create message element
       message = document.createElement('div')
       message.textContent = "Message added!"
-
       message.classList.add('message')
       #Add Text Message
       @element.appendChild(message)
 
-
-
   script_newtab: ->
     console.log 'script_newtab'
-
     BrowserWindow = require('remote').require 'browser-window'
     mainWindow = new BrowserWindow({width: 800, height: 600, frame: true });
     #mainWindow.loadUrl('http://localhost:57772/csp/sys/webterminal/index.csp')
-
     mainWindow.show()
 
   script_newwindow: ->
     console.log 'script_newwindow'
-
     BrowserWindow = require('remote').require 'browser-window'
     mainWindow = new BrowserWindow({width: 800, height: 600, frame: true });
     #mainWindow.loadUrl('http://localhost:57772/csp/sys/webterminal/index.csp')
@@ -123,8 +116,6 @@ class CustomscriptbuildsView
     # this is a plain jQuery object; you can't call view-specific methods
     editorElement = atom.workspaceView.find("atom-text-editor.active")
     console.log editorElement
-
-
     # get the view object by calling `.view()` to call view-specific methods
     editorView = editorElement.view()
     #editorView.setCursorBufferPosition([1, 2])
@@ -199,7 +190,6 @@ class CustomscriptbuildsView
     #console.log atom.workspace(editor.getUri(),{}) #not working
     #console.log atom.workspace(editor.getTitle(),{}) #not working
     console.log atom.workspace
-
 
     #console.log atom.workspace.open editor.getTitle()
     #console.log atom.workspace.open 'sample.js'
