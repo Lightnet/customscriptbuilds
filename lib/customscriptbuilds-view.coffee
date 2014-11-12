@@ -1,3 +1,6 @@
+#path = require 'path'
+temp = require 'temp'
+
 module.exports =
 class CustomscriptbuildsView
   constructor: (serializeState) ->
@@ -40,6 +43,29 @@ class CustomscriptbuildsView
     atom.commands.add 'atom-workspace', 'customscriptbuilds:set1': => @script_set1()
     atom.commands.add 'atom-workspace', 'customscriptbuilds:log': => @script_log()
     atom.commands.add 'atom-workspace', 'customscriptbuilds:currentview': => @script_currentview()
+    atom.commands.add 'atom-workspace', 'customscriptbuilds:dialog': => @script_dialog()
+
+    #spyOn(atom,'confirm').andReturn(0)
+
+    @dialog_process("intbtn")
+
+
+    atom.workspaceView.command "customscriptbuild:dialogbox", =>
+      # do setup stuff (build the params object)
+      atom.confirm
+        message: "[dialog]You sure?"
+        buttons:
+          OK:(func) ->
+              fun:->
+                @dialog_process("intbtn")
+          Cancel:(func) ->
+              @dialog_process("intbtn")
+
+        #console.log "tesy"
+      #if answer == 1
+        #console.log answer
+        #@mm.run(params).then (result) =>
+          #@mmResponseHandler(params, result)
 
   # Returns an object that can be retrieved when package is activated
   serialize: ->
@@ -47,6 +73,16 @@ class CustomscriptbuildsView
   # Tear down any state and detach
   destroy: ->
     @element.remove()
+
+  dialog_process: (intbtn) ->
+    console.log intbtn
+
+  btn_cancel:->
+    console.log "cancel"
+
+  btn_ok:->
+    console.log "ok"
+
 
   # Toggle the visibility of this view
   toggle: ->
@@ -68,6 +104,9 @@ class CustomscriptbuildsView
       message.classList.add('message')
       #Add Text Message
       @element.appendChild(message)
+
+
+
   script_newtab: ->
     console.log 'script_newtab'
 
@@ -130,6 +169,11 @@ class CustomscriptbuildsView
     console.log 'script_log'
     console.log atom.config.get "customscriptbuild.showInvisibles"
 
+  script_dialog: ->
+    #spyOn(atom, 'confirm').andReturn(1)
+    atom.workspaceView.trigger 'customscriptbuild:dialogbox'
+    #expect(mm.run).toHaveBeenCalled()
+
   window_about: ->
     BrowserWindow = require('remote').require 'browser-window'
     mainWindow = new BrowserWindow({width: 800, height: 600, frame: true });
@@ -148,15 +192,41 @@ class CustomscriptbuildsView
 
     editor = atom.workspace.getActiveTextEditor()
 
-    console.log editor.getTitle() #get current title tab
-    console.log editor
-    console.log editor.getUri() #get file path
+    #console.log editor.getTitle() #get current title tab
+    #console.log editor
+    #console.log editor.getUri() #get file path
 
-    BrowserWindow = require('remote').require 'browser-window'
-    mainWindow = new BrowserWindow({width: 800, height: 600, frame: true });
+    #BrowserWindow = require('remote').require 'browser-window'
+    #mainWindow = new BrowserWindow({width: 800, height: 600, frame: true });
     #mainWindow.loadUrl editor.getUri()
     #mainWindow.loadUrl('http://localhost:57772/csp/sys/webterminal/index.csp')
-    mainWindow.show()
+    #mainWindow.show()
+
+    #console.log atom.workspace(editor.getUri(),{}) #not working
+    #console.log atom.workspace(editor.getTitle(),{}) #not working
+    console.log atom.workspace
 
 
+    #console.log atom.workspace.open editor.getTitle()
+    #console.log atom.workspace.open 'sample.js'
+
+    #console.log atom.workspace.openSync 'sample.js'
+    #console.log atom.workspace.openSync 'sample.js'
+    #console.log atom.workspace.openUriInPane 'sample.js' #not work
+    #console.log atom
+    #console.log atom.getConfigDirPath()
+    #console.log atom.getCurrentWindow()
+
+    #https://discuss.atom.io/t/atom-project-path-cannot-call-path-of-undefined-in-test/12041
     #console.log atom.workspaceView
+    #directory = temp.mkdirSync()
+    #console.log directory
+    #atom.project.setPath(directory)
+    #console.log directory
+    #atom.workspaceView = new WorkspaceView()
+    #atom.workspace = atom.workspaceView.model
+    #console.log atom
+
+    console.log atom.workspace.open('sample.js',['newWindow':"true"])
+
+    #

@@ -28,7 +28,9 @@
         {'label': 'set0', 'command': 'customscriptbuilds:set0'},
         {'label': 'set1', 'command': 'customscriptbuilds:set1'},
         {'label': 'log', 'command': 'customscriptbuilds:log'},
-        {'label': 'Currentview', 'command': 'customscriptbuilds:currentview'}
+        {'label': 'dialog', 'command': 'customscriptbuilds:dialog'},
+        {'label': 'Currentview', 'command': 'customscriptbuilds:currentview'},
+        {'label': 'Console', 'command': 'customscriptbuilds:run-console'}
 
       ]
   }

@@ -1,12 +1,12 @@
 {View} = require 'atom'
 
 module.exports =
-class CustomScriptBuildsConfigView extends View
+class CustomScriptBuildsConsoleView extends View
 
   @content: ->
     @div =>
-      @div class: 'overlay from-top panel', outlet: 'scriptOptionsView', =>
-        @div class: 'panel-heading', 'Configure Run Options'
+      @div class: 'overlay from-bottom panel', outlet: 'scriptOptionsView', =>
+        @div class: 'panel-heading', 'Console Run Options'
         @div class: 'panel-body padded', =>
           @div class: 'block', =>
             @select
@@ -60,10 +60,10 @@ class CustomScriptBuildsConfigView extends View
 
   initialize: (@runOptions) ->
     #console.log "init"
-    atom.workspaceView.command 'customscriptbuilds:run-configs', => @toggleScriptOptions()
-    atom.workspaceView.command 'customscriptbuilds:close-config', =>
+    atom.workspaceView.command 'customscriptbuilds:run-console', => @toggleScriptOptions()
+    atom.workspaceView.command 'customscriptbuilds:close-console', =>
       @toggleScriptOptions 'hide'
-    atom.workspaceView.command 'customscriptbuilds:save-options', => @saveOptions()
+    atom.workspaceView.command 'customscriptbuilds:save-console', => @saveOptions()
     atom.workspaceView.prependToTop this
     @toggleScriptOptions 'hide'
     #console.log this
@@ -93,11 +93,11 @@ class CustomScriptBuildsConfigView extends View
 
 
   close: ->
-    atom.workspaceView.trigger 'customscriptbuilds:close-config'
+    atom.workspaceView.trigger 'customscriptbuilds:close-console'
 
   run: ->
-    atom.workspaceView.trigger 'customscriptbuilds:save-options'
-    atom.workspaceView.trigger 'customscriptbuilds:close-config'
+    atom.workspaceView.trigger 'customscriptbuilds:save-console'
+    atom.workspaceView.trigger 'customscriptbuilds:close-console'
     atom.workspaceView.trigger 'customscriptbuilds:run'
 
   setvar: ->

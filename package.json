@@ -18,7 +18,7 @@
     {"atom-workspace": "customscriptbuilds:newwindow"},
     {"atom-workspace": "customscriptbuilds:about"}
   ],
-  "repository": "https://github.com/atom/customscriptbuilds",
+  "repository": "https://github.com/Lightnet/customscriptbuilds",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
