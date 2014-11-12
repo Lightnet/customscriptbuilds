@@ -12,31 +12,38 @@
       'label': 'Custom Script Builds'
       'submenu': [
         {'label': 'Toggle', 'command': 'customscriptbuilds:toggle'},
-        {'label': 'Add Message', 'command': 'customscriptbuilds:addmessage'},
-        {'label': 'build', 'command': 'customscriptbuilds:build'},
-        {'label': 'rebuild', 'command': 'customscriptbuilds:rebuild'},
-        {'label': 'compile', 'command': 'customscriptbuilds:compile'},
-        {'label': 'debug', 'command': 'customscriptbuilds:debug'},
-        {'label': 'run', 'command': 'customscriptbuilds:run'},
-        {'label': 'stop', 'command': 'customscriptbuilds:stop'},
-        {'label': 'config', 'command': 'customscriptbuilds:run-configs'},
-        {'label': 'export', 'command': 'customscriptbuilds:export'},
-        {'label': 'newtab', 'command': 'customscriptbuilds:newtab'},
-        {'label': 'newwindow', 'command': 'customscriptbuilds:newwindow'},
-        {'label': 'about', 'command': 'customscriptbuilds:about'},
-
-        {'label': 'set0', 'command': 'customscriptbuilds:set0'},
-        {'label': 'set1', 'command': 'customscriptbuilds:set1'},
-        {'label': 'log', 'command': 'customscriptbuilds:log'},
-        {'label': 'dialog', 'command': 'customscriptbuilds:dialog'},
-        {'label': 'Currentview', 'command': 'customscriptbuilds:currentview'},
-        {'label': 'Console', 'command': 'customscriptbuilds:run-console'}
+        'label': 'Mode'
+        'submenu': [
+          {'label': 'Build', 'command': 'customscriptbuilds:build'},
+          {'label': 'Rebuild', 'command': 'customscriptbuilds:rebuild'},
+          {'label': 'Compile', 'command': 'customscriptbuilds:compile'},
+          {'label': 'Debug', 'command': 'customscriptbuilds:debug'},
+          {'label': 'Run', 'command': 'customscriptbuilds:run'},
+          {'label': 'Stop', 'command': 'customscriptbuilds:stop'}
+        ]
+        {'label': 'Config', 'command': 'customscriptbuilds:run-configs'},
+        {'label': 'Export', 'command': 'customscriptbuilds:export'},
+        {'label': 'About', 'command': 'customscriptbuilds:about'},
+        'label': 'DebugTest'
+        'submenu': [
+          {'label': 'Add Message', 'command': 'customscriptbuilds:addmessage'},
+          {'label': 'New tab', 'command': 'customscriptbuilds:newtab'},
+          {'label': 'New Window', 'command': 'customscriptbuilds:newwindow'},
+          {'label': 'Set 0', 'command': 'customscriptbuilds:set0'},
+          {'label': 'Set 1', 'command': 'customscriptbuilds:set1'},
+          {'label': 'Log', 'command': 'customscriptbuilds:log'},
+          {'label': 'Dialog', 'command': 'customscriptbuilds:dialog'},
+          {'label': 'Current View', 'command': 'customscriptbuilds:currentview'}
+        ]
+        {'label': 'Console Log', 'command': 'customscriptbuilds:open-console'}
 
       ]
   }
 ]
 
 ###
+
+
 'context-menu':
   'atom-text-editor': [
     {

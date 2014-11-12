@@ -1,5 +1,5 @@
 #path = require 'path'
-temp = require 'temp'
+#temp = require 'temp'
 
 module.exports =
 class CustomscriptbuildsView
@@ -22,8 +22,6 @@ class CustomscriptbuildsView
     message.classList.add('message')
     @element.appendChild(message)
 
-
-
     # Register command that toggles this view
     atom.commands.add 'atom-workspace', 'customscriptbuilds:toggle': => @toggle()
     atom.commands.add 'atom-workspace', 'customscriptbuilds:addmessage': => @script_addmessage()
@@ -45,10 +43,7 @@ class CustomscriptbuildsView
     atom.commands.add 'atom-workspace', 'customscriptbuilds:currentview': => @script_currentview()
     atom.commands.add 'atom-workspace', 'customscriptbuilds:dialog': => @script_dialog()
 
-    #spyOn(atom,'confirm').andReturn(0)
-
     @dialog_process("intbtn")
-
 
     atom.workspaceView.command "customscriptbuild:dialogbox", =>
       # do setup stuff (build the params object)
@@ -75,14 +70,13 @@ class CustomscriptbuildsView
     @element.remove()
 
   dialog_process: (intbtn) ->
-    console.log intbtn
+    #console.log intbtn
 
   btn_cancel:->
     console.log "cancel"
 
   btn_ok:->
     console.log "ok"
-
 
   # Toggle the visibility of this view
   toggle: ->

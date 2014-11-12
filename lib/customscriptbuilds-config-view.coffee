@@ -2,20 +2,34 @@
 
 module.exports =
 class CustomScriptBuildsConfigView extends View
-
+  #options = atom.config.getSchema(keyPath)?.enum ? []
+  options = ["ts","js","coffee","html"]
+  predefinenames = ["typescript"]
   @content: ->
     @div =>
+      css = 'btn inline-block-tight'
       @div class: 'overlay from-top panel', outlet: 'scriptOptionsView', =>
         @div class: 'panel-heading', 'Configure Run Options'
         @div class: 'panel-body padded', =>
           @div class: 'block', =>
             @select
             @label 'Setting Name:'
+
             @input
               type: 'text'
               class: 'editor mini native-key-bindings'
               outlet: 'inputSettingName'
-            css = 'btn inline-block-tight'
+            @select class: 'form-control', =>
+              for option in predefinenames
+                @option value: option, option
+                console.log option
+
+            @label 'Ext Type:'
+            @select class: 'form-control', =>
+              for option in options
+                @option value: option, option
+                console.log option
+
             @button class: "btn #{css}", click: 'close', 'Refresh'
             @button class: "btn #{css}", click: 'close', 'Save'
             @button class: "btn #{css}", click: 'close', 'Delete'

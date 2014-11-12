@@ -16,6 +16,7 @@
     {"atom-workspace": "customscriptbuilds:export"},
     {"atom-workspace": "customscriptbuilds:newtab"},
     {"atom-workspace": "customscriptbuilds:newwindow"},
+    {"atom-workspace": "customscriptbuilds:newwindow"},
     {"atom-workspace": "customscriptbuilds:about"}
   ],
   "repository": "https://github.com/Lightnet/customscriptbuilds",
