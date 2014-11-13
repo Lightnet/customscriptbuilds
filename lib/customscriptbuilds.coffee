@@ -26,6 +26,7 @@ module.exports =
     #console.log state
     @customscriptbuildsView = new CustomscriptbuildsView(state.customscriptbuildsViewState)
     @customscriptbuildsconfigView = new CustomScriptBuildsConfigView(state.customscriptbuildsconfigViewState)
+    #console display logs
     @customscriptbuildsconsoleView = new CustomScriptBuildsConsoleView(state.customscriptbuildsconsoleViewState)
     #console.log state
     #atom.workspaceView.appendToBottom(@customscriptbuildsconfigView)
