@@ -1,5 +1,7 @@
+{View} = require 'atom'
 #path = require 'path'
 #temp = require 'temp'
+CustomScriptBuildsServerView = require './customscriptbuilds-server-view'
 
 module.exports =
 class CustomscriptbuildsView
@@ -165,6 +167,25 @@ class CustomscriptbuildsView
 
   script_currentview: ->
     console.log 'script_currentview'
+
+    console.log atom.workspace
+
+    editor = atom.workspace.getActiveTextEditor()
+    console.log editor.getUri()
+    console.log editor.getTitle()
+    # place a view to the left of the panes
+    #atom.workspaceView.appendToLeft(new CustomScriptBuildsServerView)
+    #read doc link https://atom.io/docs/v0.146.0/advanced/view-system
+    atom.workspaceView.appendToBottom(new CustomScriptBuildsServerView)
+
+
+
+
+
+
+
+
+
     #editorElement = atom.workspaceView.find("atom-text-editor.active")
     #console.log editorElement
     # get the view object by calling `.view()` to call view-specific methods
@@ -173,7 +194,7 @@ class CustomscriptbuildsView
     #console.log editorView
     #console.log atom.workspaceView
 
-    editor = atom.workspace.getActiveTextEditor()
+
 
     #console.log editor.getTitle() #get current title tab
     #console.log editor
@@ -187,7 +208,7 @@ class CustomscriptbuildsView
 
     #console.log atom.workspace(editor.getUri(),{}) #not working
     #console.log atom.workspace(editor.getTitle(),{}) #not working
-    console.log atom.workspace
+    #console.log atom.workspace
 
     #console.log atom.workspace.open editor.getTitle()
     #console.log atom.workspace.open 'sample.js'
@@ -209,6 +230,9 @@ class CustomscriptbuildsView
     #atom.workspace = atom.workspaceView.model
     #console.log atom
 
-    console.log atom.workspace.open('sample.js',['newWindow':"true"])
+    #console.log atom.workspace.open('sample.js',['newWindow':"true"])
+    #
+    #editor = atom.workspace.getActivePaneItem()
+    #editor.insertText('Hello, World!')
 
     #
