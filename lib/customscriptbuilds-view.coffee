@@ -81,8 +81,8 @@ class CustomscriptbuildsView
     @element.remove()
 
   dialog_process: (intbtn) ->
-    console.log "dialog"
-    console.log intbtn
+    #console.log "dialog"
+    #console.log intbtn
 
   btn_cancel:->
     console.log "cancel"
@@ -178,24 +178,29 @@ class CustomscriptbuildsView
     mainWindow.show()
 
   script_currentview: ->
-    console.log 'script_currentview'
+    #console.log 'script_currentview'
 
-    console.log atom.workspace
+    #console.log atom.workspace
 
     editor = atom.workspace.getActiveTextEditor()
-    console.log editor.getUri()
-    console.log editor.getTitle()
+    #console.log editor.getUri()
+    #console.log editor.getTitle()
+
+    #console.log atom.workspace.getActivePane()
+    pane = atom.workspace.getActivePane()
+    console.log atom
+    #console.log pane
+
+
+    #console.log atom.project.path
+    console.log atom.project.getPath()
+    console.log "current dir path"
+
+
     # place a view to the left of the panes
     #atom.workspaceView.appendToLeft(new CustomScriptBuildsServerView)
     #read doc link https://atom.io/docs/v0.146.0/advanced/view-system
-    atom.workspaceView.appendToBottom(new CustomScriptBuildsServerView)
-
-
-
-
-
-
-
+    #atom.workspaceView.appendToBottom(new CustomScriptBuildsServerView)
 
 
     #editorElement = atom.workspaceView.find("atom-text-editor.active")
@@ -205,7 +210,6 @@ class CustomscriptbuildsView
     #editorView.setCursorBufferPosition([1, 2])
     #console.log editorView
     #console.log atom.workspaceView
-
 
 
     #console.log editor.getTitle() #get current title tab

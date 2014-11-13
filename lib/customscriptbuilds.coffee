@@ -41,9 +41,12 @@ module.exports =
     @customscriptbuildsconfigView = new CustomScriptBuildsConfigView(state.customscriptbuildsconfigViewState)
     #console display logs
     @customscriptbuildsconsoleView = new CustomScriptBuildsConsoleView(state.customscriptbuildsconsoleViewState)
+    atom.workspaceView.appendToBottom(@customscriptbuildsconsoleView)
+
     @customscriptbuildstoolbarView = new CustomScriptBuildsToolbarView(state.customscriptbuildstoolbarViewState)
-    #atom.workspaceView.appendToBottom(@customscriptbuildstoolbarView)
     atom.workspaceView.appendToTop(@customscriptbuildstoolbarView)
+    #atom.workspaceView.appendToBottom(@customscriptbuildstoolbarView)
+
     #console.log state
     #atom.workspaceView.appendToBottom(@customscriptbuildsconfigView)
     #console.log @customscriptbuildsconfigView
