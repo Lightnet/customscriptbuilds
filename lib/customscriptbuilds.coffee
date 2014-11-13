@@ -1,6 +1,19 @@
+###
+ Project Name: Custom Script Builds
+ Link: https://github.com/Lightnet/customscriptbuilds
+ License: MIT
+ Information: To run typescript for server hosting for better style format flow.
+ To create a simple work flow layout. For browser game or application for html.
+
+###
+
+#main file that run the scripts for the coffee build api of the atom
+
 CustomscriptbuildsView = require './customscriptbuilds-view'
 CustomScriptBuildsConfigView = require './customscriptbuilds-config-view'
 CustomScriptBuildsConsoleView = require './customscriptbuilds-console-view'
+
+CustomScriptBuildsToolbarView = require './customscriptbuilds-toolbar-view'
 
 module.exports =
   #configDefaults:
@@ -28,6 +41,9 @@ module.exports =
     @customscriptbuildsconfigView = new CustomScriptBuildsConfigView(state.customscriptbuildsconfigViewState)
     #console display logs
     @customscriptbuildsconsoleView = new CustomScriptBuildsConsoleView(state.customscriptbuildsconsoleViewState)
+    @customscriptbuildstoolbarView = new CustomScriptBuildsToolbarView(state.customscriptbuildstoolbarViewState)
+    #atom.workspaceView.appendToBottom(@customscriptbuildstoolbarView)
+    atom.workspaceView.appendToTop(@customscriptbuildstoolbarView)
     #console.log state
     #atom.workspaceView.appendToBottom(@customscriptbuildsconfigView)
     #console.log @customscriptbuildsconfigView

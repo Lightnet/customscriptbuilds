@@ -10,7 +10,7 @@
 {View} = require 'atom'
 
 module.exports =
-class CustomScriptBuildsServerView extends View
+class CustomScriptBuildsToolbarView extends View
 
   @content: ->
     #@div class: 'overlay from-top panel', outlet: 'scriptOptionsView', => #non header
@@ -23,27 +23,20 @@ class CustomScriptBuildsServerView extends View
         click: 'close'
 
   initialize: (@runOptions) ->
-    @title.text  'server'
+    @title.text  'Toolbar'
     @setStatus  'start'
-    atom.workspaceView.command 'customscriptbuilds:open-console', => @toggleScriptOptions()
-    atom.workspaceView.command 'customscriptbuilds:close-console', =>
+    atom.workspaceView.command 'customscriptbuilds:open-toolbar', => @toggleScriptOptions()
+    atom.workspaceView.command 'customscriptbuilds:close-toolbar', =>
       @toggleScriptOptions 'hide'
-    #atom.workspaceView.command 'customscriptbuilds:save-console', => @saveOptions()
-    #atom.workspaceView.prependToTop this
-    #@toggleScriptOptions 'hide'
 
   toggleScriptOptions: (command) ->
-    #console.log command
-    #console.log this.hide()
-    #@CustomScriptBuildsConfigView.hide()
     switch command
-      when 'show' then this.show() #@CustomScriptBuildsConfigView.show()
-      when 'hide' then this.hide() #@CustomScriptBuildsConfigView.hide()
-      else this.toggle() #@CustomScriptBuildsConfigView.toggle()
-    #console.log "toggle console"
+      when 'show' then this.show()
+      when 'hide' then this.hide()
+      else this.toggle()
 
   close: ->
-    atom.workspaceView.trigger 'customscriptbuilds:close-console'
+    atom.workspaceView.trigger 'customscriptbuilds:close-server'
 
   setStatus: (status) ->
     @status.removeClass 'icon-alert icon-check icon-hourglass icon-stop'

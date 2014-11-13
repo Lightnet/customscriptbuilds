@@ -1,3 +1,12 @@
+###
+ Project Name: Custom Script Builds
+ Link: https://github.com/Lightnet/customscriptbuilds
+ License: MIT
+ Information: To run typescript for server hosting for better style format flow.
+ To create a simple work flow layout. For browser game or application for html.
+
+###
+
 # See https://atom.io/docs/latest/creating-a-package#menus for more details
 
 'context-menu':
@@ -35,6 +44,7 @@
         {'label': 'Dialog', 'command': 'customscriptbuilds:dialog'},
         {'label': 'Current View', 'command': 'customscriptbuilds:currentview'}
       ]
+      {'label': 'Toolbar', 'command': 'customscriptbuilds:open-toolbar'},
       {'label': 'Console Log', 'command': 'customscriptbuilds:open-console'}
     ]
   }

@@ -1,3 +1,12 @@
+###
+ Project Name: Custom Script Builds
+ Link: https://github.com/Lightnet/customscriptbuilds
+ License: MIT
+ Information: To run typescript for server hosting for better style format flow.
+ To create a simple work flow layout. For browser game or application for html.
+
+###
+
 {View} = require 'atom'
 #path = require 'path'
 #temp = require 'temp'
@@ -52,8 +61,10 @@ class CustomscriptbuildsView
       atom.confirm
         message: "[dialog]You sure?"
         buttons:
-          OK:(func) ->  @dialog_process("intbtn")
-          Cancel:(func) ->  @dialog_process("intbtn")
+          Cancel: =>  #Do nothing
+            @dialog_process("gone")
+          OK: => # run the delete handler
+            @dialog_process("intbtn")
 
 
         #console.log "tesy"
@@ -70,7 +81,8 @@ class CustomscriptbuildsView
     @element.remove()
 
   dialog_process: (intbtn) ->
-    #console.log intbtn
+    console.log "dialog"
+    console.log intbtn
 
   btn_cancel:->
     console.log "cancel"
