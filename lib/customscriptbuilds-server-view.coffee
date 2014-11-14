@@ -29,8 +29,8 @@ class CustomScriptBuildsServerView extends View
     atom.workspaceView.command 'customscriptbuilds:close-console', =>
       @toggleScriptOptions 'hide'
     #atom.workspaceView.command 'customscriptbuilds:save-console', => @saveOptions()
-    #atom.workspaceView.prependToTop this
-    #@toggleScriptOptions 'hide'
+    atom.workspaceView.prependToTop this
+    @toggleScriptOptions 'hide'
 
   toggleScriptOptions: (command) ->
     #console.log command

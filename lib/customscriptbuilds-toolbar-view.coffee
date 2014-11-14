@@ -56,7 +56,6 @@ class CustomScriptBuildsToolbarView extends View
     @icon_stopscript.addClass 'icon-primitive-square'
     @icon_restartscript.addClass 'icon-sync'
 
-
     @web.addClass 'icon-browser'
     @icon_startserver.addClass 'icon-playback-play'
     @icon_stopserver.addClass 'icon-primitive-square'
@@ -65,6 +64,7 @@ class CustomScriptBuildsToolbarView extends View
     atom.workspaceView.command 'customscriptbuilds:open-toolbar', => @toggleScriptOptions()
     atom.workspaceView.command 'customscriptbuilds:close-toolbar', =>
       @toggleScriptOptions 'hide'
+    @toggleScriptOptions 'hide'
 
   toggleScriptOptions: (command) ->
     switch command
