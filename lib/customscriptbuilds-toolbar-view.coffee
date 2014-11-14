@@ -41,11 +41,7 @@ class CustomScriptBuildsToolbarView extends View
       @span
         class: 'heading-close icon-remove-close pull-right'
         outlet: 'closeButton'
-        click: 'close'
-      @span
-        class: 'heading-close icon-dash pull-right'
-        outlet: 'closeButton'
-        click: 'close'
+        click: 'toggleScriptOptions'
 
   initialize: (@runOptions) ->
     @title.text  'Server Status:'

@@ -4,7 +4,6 @@
  License: MIT
  Information: To run typescript for server hosting for better style format flow.
  To create a simple work flow layout. For browser game or application for html.
-
 ###
 
 {View} = require 'atom'
