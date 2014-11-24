@@ -21,19 +21,31 @@
     'label': 'Custom Script Builds'
     'submenu': [
       {'label': 'Toggle', 'command': 'customscriptbuilds:toggle'},
+      {
+      'label': 'View'
+      'submenu': [
+            {'label': 'Toolbar', 'command': 'customscriptbuilds:open-toolbar'},
+            {'label': 'Settings', 'command': 'customscriptbuilds:show-my-settings'},
+            {'label': 'Console Log', 'command': 'customscriptbuilds:open-console'}
+            ]
+      },
+      {
       'label': 'Mode'
       'submenu': [
+        {'label': 'Compile Nodejs', 'command': 'customscriptbuilds:compile-nodejs'},
+        {'label': 'Compile Html', 'command': 'customscriptbuilds:compile-html'},
+
         {'label': 'Build', 'command': 'customscriptbuilds:build'},
         {'label': 'Rebuild', 'command': 'customscriptbuilds:rebuild'},
         {'label': 'Compile', 'command': 'customscriptbuilds:compile'},
         {'label': 'Debug', 'command': 'customscriptbuilds:debug'},
         {'label': 'Run', 'command': 'customscriptbuilds:run'},
         {'label': 'Stop', 'command': 'customscriptbuilds:stop'}
-      ]
+      ]}
       {'label': 'Config', 'command': 'customscriptbuilds:run-configs'},
       {'label': 'Export', 'command': 'customscriptbuilds:export'},
       {'label': 'About', 'command': 'customscriptbuilds:about'},
-      'label': 'DebugTest'
+      {'label': 'DebugTest'
       'submenu': [
         {'label': 'Add Message', 'command': 'customscriptbuilds:addmessage'},
         {'label': 'New tab', 'command': 'customscriptbuilds:newtab'},
@@ -44,8 +56,9 @@
         {'label': 'Dialog', 'command': 'customscriptbuilds:dialog'},
         {'label': 'Current View', 'command': 'customscriptbuilds:currentview'}
       ]
-      {'label': 'Toolbar', 'command': 'customscriptbuilds:open-toolbar'},
-      {'label': 'Console Log', 'command': 'customscriptbuilds:open-console'}
+      },
+
+
     ]
   }
 ]

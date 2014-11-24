@@ -7,19 +7,30 @@
 
 ###
 
+
+configUri = 'customscriptbuilds://my-settings'
+CustomScriptBuildsSettingsView = null
+customscriptbuildsSettingsView = null
+
 #main file that run the scripts for the coffee build api of the atom
 
 CustomscriptbuildsView = require './customscriptbuilds-view'
 CustomScriptBuildsConfigView = require './customscriptbuilds-config-view'
 CustomScriptBuildsConsoleView = require './customscriptbuilds-console-view'
-
 CustomScriptBuildsToolbarView = require './customscriptbuilds-toolbar-view'
+
+createMyView = (params) ->
+  CustomScriptBuildsSettingsView ?= require './customscriptbuilds-settings-view'
+  customscriptbuildsSettingsView = new CustomScriptBuildsSettingsView(params)
 
 module.exports =
   #configDefaults:
   configDefaults:
     autoCompileSave: false
+    showtoolbar:false
     compileType: {'ts','js','coffee'}
+    compilenodejs:'compilehtml.bat'
+    conpilehtml:'compilenodejs.bat'
 
   ###
   config:
@@ -36,6 +47,13 @@ module.exports =
   customscriptbuildsconsoleView: null
 
   activate: (state) ->
+    #setup tab settings
+    atom.workspace.addOpener (uri) ->
+      createMyView({uri}) if uri is configUri
+    #binding
+    atom.commands.add 'atom-workspace', 'customscriptbuilds:show-my-settings', ->
+      atom.workspace.open configUri
+
     #console.log state
     @customscriptbuildsView = new CustomscriptbuildsView(state.customscriptbuildsViewState)
     @customscriptbuildsconfigView = new CustomScriptBuildsConfigView(state.customscriptbuildsconfigViewState)

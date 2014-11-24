@@ -18,9 +18,10 @@ class CustomScriptBuildsToolbarView extends View
   @content: ->
     #@div class: 'overlay from-top panel', outlet: 'scriptOptionsView', => #non header
     @div class: 'panel-heading padded heading header-view', => #header
-
+      css = 'btn inline-block-tight'
+      @button class: "btn #{css}", click: 'trigger_compilenodejs', 'Compile Nodejs'
+      @button class: "btn #{css}", click: 'trigger_compilehtml', 'Compile html'
       @span class: 'heading-status icon-terminal', outlet: 'icon_terimal'
-
       @span class: 'heading-title', outlet: 'title2'
       @span class: 'heading-status', outlet: 'icon_buildscript'
       @span class: 'heading-status', outlet: 'icon_compilescript'
@@ -64,16 +65,37 @@ class CustomScriptBuildsToolbarView extends View
     atom.workspaceView.command 'customscriptbuilds:open-toolbar', => @toggleScriptOptions()
     atom.workspaceView.command 'customscriptbuilds:close-toolbar', =>
       @toggleScriptOptions 'hide'
-    @toggleScriptOptions 'hide'
+    bshow = atom.config.get "customscriptbuilds.showtoolbar"
+    console.log bshow
+    if bshow == true
+      @toggleScriptOptions 'show'
+    else
+      @toggleScriptOptions 'hide'
+
+
 
   toggleScriptOptions: (command) ->
     switch command
       when 'show' then this.show()
       when 'hide' then this.hide()
       else this.toggle()
+    #console.log this
+    #console.log this.isVisible()
+    if 'show' == command
+      atom.config.set("customscriptbuilds.showtoolbar", true)
+    else if 'hide' == command
+      atom.config.set("customscriptbuilds.showtoolbar", false)
+    else
+      atom.config.set("customscriptbuilds.showtoolbar", this.isVisible())
 
   close: ->
     atom.workspaceView.trigger 'customscriptbuilds:close-server'
+
+  trigger_compilenodejs:->
+    atom.workspaceView.trigger 'customscriptbuilds:compile-nodejs'
+  trigger_compilehtml:->
+    atom.workspaceView.trigger 'customscriptbuilds:compile-html'
+
 
   setStatus: (status) ->
     @status.removeClass 'icon-alert icon-check icon-hourglass icon-stop'
