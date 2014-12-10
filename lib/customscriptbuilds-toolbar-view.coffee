@@ -17,20 +17,30 @@ class CustomScriptBuildsToolbarView extends View
 
   @content: ->
     #@div class: 'overlay from-top panel', outlet: 'scriptOptionsView', => #non header
-    @div class: 'panel-heading padded heading header-view', => #header
-      css = 'btn inline-block-tight'
-      @button class: "btn #{css}", click: 'trigger_compilenodejs', 'Compile Nodejs'
-      @button class: "btn #{css}", click: 'trigger_compilehtml', 'Compile html'
-      @span class: 'heading-status icon-terminal', outlet: 'icon_terimal'
-      @span class: 'heading-title', outlet: 'title2'
-      @span class: 'heading-status', outlet: 'icon_buildscript'
-      @span class: 'heading-status', outlet: 'icon_compilescript'
-      @span class: 'heading-status', outlet: 'icon_runscript'
-      @span class: 'heading-status', outlet: 'icon_stopscript'
-      @span class: 'heading-status', outlet: 'icon_restartscript'
+    #@div class: 'panel-heading padded heading header-view', => #header
+    #@div class: 'panel-heading padded heading header-view', => #header
+    @div class: 'tool-panel padded heading header-view', => #header
+      @span class: 'heading-status icon-terminal', outlet: 'icon_terimal', click: 'toggleconsole'
 
       @span class: 'heading-title', outlet: 'title'
       @span class: 'heading-status', outlet: 'status'
+      #css = 'btn inline-block-tight'
+      css = ''
+      #css = 'btn'
+
+      @span class: 'heading-title', outlet: 'title2'
+      @a class: "#{css}", click: 'trigger_compilenodejs', '[ Nodejs ]'
+      @a class: " #{css}", click: 'trigger_compilehtml', '[ html ]'
+
+      @a class: "#{css}", click: 'trigger_compilefile', '[ File ]' # current file
+      @a class: "#{css}", click: 'trigger_runfile', '[ Run File ]' # run file
+      @a class: "#{css}", click: 'trigger_stopfile', '[ Stop File ]' # run file
+
+      @label ' Server: '
+      @a class: "#{css}", click: '', '[ Start ]'
+      @a class: "#{css}", click: '', '[ Stop ]'
+      @a class: "#{css}", click: '', '[ Restart ]'
+
       @span class: 'heading-status', outlet: 'icon_startserver'
       @span class: 'heading-status', outlet: 'icon_stopserver'
       @span class: 'heading-status', outlet: 'icon_restartserver'
@@ -45,22 +55,22 @@ class CustomScriptBuildsToolbarView extends View
         click: 'toggleScriptOptions'
 
   initialize: (@runOptions) ->
-    @title.text  'Server Status:'
-    @title2.text 'Build Modes:'
+    @title.text  'Status:'
+    @title2.text 'Compile:'
     #setup icon css
     #@setStatus  'start'
     @setStatus ''
 
-    @icon_buildscript.addClass 'icon-package'
-    @icon_compilescript.addClass 'icon-pencil'
-    @icon_runscript.addClass 'icon-playback-play'
-    @icon_stopscript.addClass 'icon-primitive-square'
-    @icon_restartscript.addClass 'icon-sync'
+    #@icon_buildscript.addClass 'icon-package'
+    #@icon_compilescript.addClass 'icon-pencil'
+    #@icon_runscript.addClass 'icon-playback-play'
+    #@icon_stopscript.addClass 'icon-primitive-square'
+    #@icon_restartscript.addClass 'icon-sync'
 
-    @web.addClass 'icon-browser'
-    @icon_startserver.addClass 'icon-playback-play'
-    @icon_stopserver.addClass 'icon-primitive-square'
-    @icon_restartserver.addClass 'icon-sync'
+    #@web.addClass 'icon-browser'
+    #@icon_startserver.addClass 'icon-playback-play'
+    #@icon_stopserver.addClass 'icon-primitive-square'
+    #@icon_restartserver.addClass 'icon-sync'
 
     atom.workspaceView.command 'customscriptbuilds:open-toolbar', => @toggleScriptOptions()
     atom.workspaceView.command 'customscriptbuilds:close-toolbar', =>
@@ -71,8 +81,6 @@ class CustomScriptBuildsToolbarView extends View
       @toggleScriptOptions 'show'
     else
       @toggleScriptOptions 'hide'
-
-
 
   toggleScriptOptions: (command) ->
     switch command
@@ -90,15 +98,22 @@ class CustomScriptBuildsToolbarView extends View
 
   close: ->
     atom.workspaceView.trigger 'customscriptbuilds:close-server'
+  toggleconsole: ->
+    atom.workspaceView.trigger 'customscriptbuilds:toggle-console'
 
   trigger_compilenodejs:->
     atom.workspaceView.trigger 'customscriptbuilds:compile-nodejs'
   trigger_compilehtml:->
     atom.workspaceView.trigger 'customscriptbuilds:compile-html'
 
+  trigger_compilefile:->
+    #atom.workspaceView.trigger 'customscriptbuilds:compile-html'
+  trigger_runfile:->
+    #atom.workspaceView.trigger 'customscriptbuilds:compile-html'
+
 
   setStatus: (status) ->
-    @status.removeClass 'icon-alert icon-check icon-hourglass icon-stop'
+    @status.removeClass 'icon-alert icon-check icon-hourglass icon-stop icon-dash'
 
     #@status.addClass 'icon-browser'
     #@status.addClass 'icon-playback-play'
@@ -110,7 +125,7 @@ class CustomScriptBuildsToolbarView extends View
       when 'stop' then @status.addClass 'icon-check'
       when 'kill' then @status.addClass 'icon-stop'
       when 'err' then @status.addClass 'icon-alert'
-      else @status.addClass 'icon-question'
+      else @status.addClass 'icon-dash'
 
   openbrowser: ->
     BrowserWindow = require('remote').require 'browser-window'

@@ -15,29 +15,30 @@ class CustomScriptBuildsConsoleView extends View
   @compilemode: "nodejs"
 
   @content: ->
+    css = 'tool-panel panel panel-bottom padding script-view native-key-bindings'
     #@div class: 'overlay from-top panel', outlet: 'scriptOptionsView', => #non header
-    @div class: 'panel-heading padded heading header-view', => #header
-      @span class: 'heading-title', outlet: 'title'
-      @span class: 'heading-status', outlet: 'status'
-      @span
-        class: 'heading-close icon-remove-close pull-right'
-        outlet: 'closeButton'
-        click: 'close'
-      @span
-          class: "heading-close icon-jump-down pull-right"
-          outlet: 'icon_toggleconsole'
-          click: 'toggleoutput'
+    #@div class: 'panel-heading padded heading header-view', => #header
+    @div class:'tool-panel padded heading header-view',=> #header
+      @div class: 'block padding', =>
+            @span class: 'heading-title', outlet: 'title'
+            @span class: 'heading-status', outlet: 'status'
+            @span
+                  class: 'heading-close icon-remove-close pull-right'
+                  outlet: 'closeButton'
+                  click: 'close'
+            @span
+                  class: "heading-close icon-jump-down pull-right"
+                  outlet: 'icon_toggleconsole'
+                  click: 'toggleoutput'
         # Display layout and outlets
       @div class: 'block', =>
-        css = 'tool-panel panel panel-bottom padding script-view
-          native-key-bindings'
-        @div class: css, outlet: 'script', tabindex: -1, =>
-          @div class: 'panel-body padded output', outlet: 'output'
+            @div class: css, outlet: 'script', tabindex: -1, =>
+                  @div class: 'panel-body padded output', outlet: 'output'
 
   initialize: (@runOptions) ->
     @ansiFilter = new AnsiFilter
     @title.text  'console'
-    @setStatus  'start'
+    @setStatus  'idle'
     #console.log "init console"
     #atom.workspaceView.command 'customscriptbuilds:open-console', => @toggleScriptOptions()
     #atom.workspaceView.command 'customscriptbuilds:close-console', =>
@@ -47,6 +48,7 @@ class CustomScriptBuildsConsoleView extends View
     atom.workspaceView.command 'customscriptbuilds:compile-nodejs', => @build_nodejs()
     atom.workspaceView.command 'customscriptbuilds:compile-html', => @build_html()
 
+    atom.workspaceView.command 'customscriptbuilds:toggle-console', => @toggleScriptConsole()
     atom.workspaceView.command 'customscriptbuilds:open-console', => @toggleScriptConsole()
     atom.workspaceView.command 'customscriptbuilds:close-console', =>
       @toggleScriptConsole 'hide'
@@ -55,6 +57,7 @@ class CustomScriptBuildsConsoleView extends View
     @toggleScriptConsole 'hide'
 
   build_nodejs:->
+        @output.empty()
         console.log 'run_nodejs'
         @compilemode = 'nodejs'
         #"%APPDATA%\npm\tsc.cmd" --module commonjs  "server_express.ts" --removeComments
@@ -62,6 +65,7 @@ class CustomScriptBuildsConsoleView extends View
         #@run("%APPDATA%\npm\tsc.cmd",'','')
 
   build_html:->
+        @output.empty()
         console.log 'run_html'
         @compilemode = 'html'
         #"%APPDATA%\npm\tsc.cmd" --module commonjs  "js_client/script_html.ts" --removeComments
@@ -92,12 +96,13 @@ class CustomScriptBuildsConsoleView extends View
     atom.workspaceView.trigger 'customscriptbuilds:close-console'
 
   setStatus: (status) ->
-    @status.removeClass 'icon-alert icon-check icon-hourglass icon-stop'
+    @status.removeClass 'icon-alert icon-check icon-hourglass icon-stop icon-dash'
     switch status
       when 'start' then @status.addClass 'icon-hourglass'
       when 'stop' then @status.addClass 'icon-check'
       when 'kill' then @status.addClass 'icon-stop'
       when 'err' then @status.addClass 'icon-alert'
+      when 'idle' then @status.addClass 'icon-dash'
 
   run: (command, extraArgs, codeContext) ->
     atom.emit 'achievement:unlock', msg: 'Homestar Runner'
