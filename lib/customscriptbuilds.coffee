@@ -28,9 +28,10 @@ module.exports =
   configDefaults:
     autoCompileSave: false
     showtoolbar:false
-    compileType: {'ts','js','coffee'}
+    compileType: ['ts','js','coffee']
     compilenodejs:'compilehtml.bat'
     conpilehtml:'compilenodejs.bat'
+    scriptserver:'server.bat'
 
   ###
   config:

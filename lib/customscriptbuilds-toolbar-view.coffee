@@ -35,7 +35,7 @@ class CustomScriptBuildsToolbarView extends View
       @a class: "#{css}", click: 'trigger_compilefile', '[ File ]' # current file
       @a class: "#{css}", click: 'trigger_runfile', '[ Run File ]' # run file
       @a class: "#{css}", click: 'trigger_stopfile', '[ Stop File ]' # run file
-
+      @span
       @label ' Server: '
       @a class: "#{css}", click: '', '[ Start ]'
       @a class: "#{css}", click: '', '[ Stop ]'
