@@ -11,9 +11,11 @@ Base Icons Link:https://octicons.github.com/
 ###
 
 {View} = require 'atom'
+BrowserWindow = require('remote').require 'browser-window'
 
 module.exports =
 class CustomScriptBuildsToolbarView extends View
+  browserWindow: null
 
   @content: ->
     #@div class: 'overlay from-top panel', outlet: 'scriptOptionsView', => #non header
@@ -40,6 +42,10 @@ class CustomScriptBuildsToolbarView extends View
       @a class: "#{css}", click: '', '[ Start ]'
       @a class: "#{css}", click: '', '[ Stop ]'
       @a class: "#{css}", click: '', '[ Restart ]'
+
+      @label ' Browser: '
+      @a class: "#{css}", click: 'openbrowser', '[ Open ]'
+      @a class: "#{css}", click: 'refreshbrowser', '[ Refresh ]'
 
       @span class: 'heading-status', outlet: 'icon_startserver'
       @span class: 'heading-status', outlet: 'icon_stopserver'
@@ -128,10 +134,31 @@ class CustomScriptBuildsToolbarView extends View
       else @status.addClass 'icon-dash'
 
   openbrowser: ->
-    BrowserWindow = require('remote').require 'browser-window'
-    mainWindow = new BrowserWindow({width: 800, height: 600, frame: true });
-    #mainWindow.loadUrl editor.getUri()
-    #mainWindow.loadUrl('http://localhost:57772/csp/sys/webterminal/index.csp')
-    mainWindow.show()
+    console.log @browserWindow
+    if @browserWindow == null
+      @browserWindow = new BrowserWindow({width: 800, height: 600, frame: true });
+      @browserWindow.loadUrl('https://www.google.ca')
+      #mainWindow.loadUrl('http://localhost:57772/csp/sys/webterminal/index.csp')
+      @browserWindow.show()
+      console.log "show browserWindow"
+    else
+      try
+        @browserWindow.loadUrl('https://www.google.ca')
+        @browserWindow.show()
+      catch error
+        @browserWindow = new BrowserWindow({width: 800, height: 600, frame: true });
+        @browserWindow.loadUrl('customscriptbuilds://my-settings')
+        @browserWindow.show()
+      console.log "other show browserWindow"
 
-    #
+      #
+  refreshbrowser: ->
+    if @browserWindow != null
+      console.log @browserWindow
+      try
+        @browserWindow.reload()
+      catch error
+        @browserWindow = new BrowserWindow({width: 800, height: 600, frame: true });
+        @browserWindow.loadUrl('customscriptbuilds://my-settings')
+        @browserWindow.show()
+  #
